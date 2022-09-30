@@ -1,25 +1,35 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react'
+
 
 function App() {
+
+  const [mailit, setMailit] = useState('')
+  const [kilometrit, setKilometrit] = useState('')
+
+  function laske(e){
+    e.preventDefault()//estää refresh
+    const tulos = mailit * 1.609
+    setKilometrit(tulos)
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div id="content">
+      <h3>Mailit kilometreiksi</h3>
+      <form onSubmit={laske}>
+        <div>
+          <label>Mailit</label>
+          <input value={mailit} onChange={e => setMailit(e.target.value)}/>
+        </div>
+        <div>
+          <label>kilometrit</label>
+          <output>{kilometrit}</output>
+        </div>
+        <button>Laske</button>
+      </form>
     </div>
+
   );
+    
 }
 
 export default App;
